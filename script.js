@@ -1,17 +1,19 @@
-const options = ['rock', 'paper', 'scissors'];
+/*This version has had a little bit of help from "Steve" aka ChatGPT.  */
+
+const options = ['rock', 'paper', 'scissors']; //array for choices
 
 let computerScore = 0;
 let playerScore = 0;
 let displayResult = '';
 
-function getComputerInput() {
+function getComputerInput() {  //computer makes a selection from the array
   return options[Math.floor(Math.random() * options.length)];
 }
 
-function getPlayerInput() {
+function getPlayerInput() {  //user is asked for their selection
   let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
   
-  if (options.includes(playerSelection)) {
+  if (options.includes(playerSelection)) {  //Steve has tidied up code here.  No need for 3 if statements.  
     return playerSelection;
   } else {
     alert("That's not a valid choice.");
@@ -36,11 +38,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = getPlayerInput();
-    const computerSelection = getComputerInput();
-    playRound(playerSelection, computerSelection);
-    console.log(`Round ${i + 1}: Player chose ${playerSelection}, Computer chose ${computerSelection}, Result: ${displayResult}`);
+  for (let i = 0; i < 5; i++) {                     //begin loop for 5 rounds
+    const playerSelection = getPlayerInput();       //define player selection variable and get value from function
+    const computerSelection = getComputerInput();   //define computer selection variable and get value from function
+    playRound(playerSelection, computerSelection);  //playRound function within game function
+    console.log(`Round ${i + 1}: Player chose ${playerSelection}, Computer chose ${computerSelection}, Result: ${displayResult}`);  //need to learn exactly what Steve has done here
   }
 
   console.log(`Final Score - Player: ${playerScore}, Computer: ${computerScore}`);
