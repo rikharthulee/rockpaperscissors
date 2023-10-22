@@ -35,10 +35,10 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === 'paper' && computerSelection === 'rock')
   ) {
     playerScore++;
-    displayResult = 'player';
+    displayResult = 'you win this round';
   } else {
     computerScore++;
-    displayResult = 'computer';
+    displayResult = 'computer wins this round';
   }
 }
 
@@ -51,7 +51,7 @@ function game() {
     console.log(`Round ${i + 1}: ${playerName} chose ${playerSelection}, Computer chose ${computerSelection}, Result: ${displayResult}`);  //need to learn exactly what Steve has done here
   }
 
-  console.log(`Final Score - Player: ${playerScore}, Computer: ${computerScore}`);
+  console.log(`Final Score - ${playerName}: ${playerScore}, Computer: ${computerScore}`);
   if (playerScore > computerScore) {
     console.log('Player wins the game!');
   } else if (computerScore > playerScore) {
