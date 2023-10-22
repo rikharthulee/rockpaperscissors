@@ -7,7 +7,7 @@ let playerScore;
 
 /* funtion to randomly generate computers choice */
 
-function getComputerChoice(computerSelection) {
+function getComputerInput(computerSelection) {
     return computerSelection = options[~~(Math.random()*options.length)]
 }
 
@@ -29,6 +29,26 @@ function getPlayerInput() {
         return playerSelection; // return the value entered to () 
 }
 
+    function playRound(computerSelection, playerSelection) {
+        computerSelection = getComputerInput().toLowerCase();   // call computer input function
+        playerSelection = getPlayerInput.toLowerCase();         // call player input function
+        if (computerSelection==playerSelection) {
+            alert('Tie game!');
+            return 'Tie game\nComputer Score: ' + 
+                    computerScore + '\nYour Score: ' + playerScore;
+        } else if ((computerSelection=='rock' && playerSelection=='scissors') 
+                  || (computerSelection=='scissors' && playerSelection=='paper') 
+                  || (computerSelection=='paper' && playerSelection=='rock')) {
+            alert('You lose! ' + computerSelection + ' beats ' + playerSelection);
+            return 'Computer Score: ' + ++computerScore + 
+                    '\nYour Score: ' + playerScore;
+        } else {
+            alert('You win! ' + playerSelection + ' beats ' + computerSelection);
+            return 'Your Score: ' + ++playerScore + 
+                    '\nComputer Score: ' + computerScore;
+        }
+    }
+
 /*  Funtion to work out winner
     added variables to this funtion.  console.log(declareResult(1,1)) passes the scores through to this function block, the values are worked on and then the result is returned.
 */
@@ -49,8 +69,10 @@ function declareResult(playerScore,computerScore) {
     function playGame () {
         computerScore = 0;
         playerScore = 0;
-        for (let i=0; i<5; i++) {
+        //for (let i=0; i<5; i++) {
             getPlayerInput();
-        }
+        //}
         console.log(declareResult());
     }
+
+    console.log(playRound())
