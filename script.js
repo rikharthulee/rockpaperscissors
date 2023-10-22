@@ -1,7 +1,9 @@
 // Computer picks rock paper or scissors from the array
 
-const options = ['Rock', 'Paper', 'Scissors']; // options in an array
+const options = ['rock', 'paper', 'scissors']; // options in an array
 
+let computerSelection;
+let playerSelection;
 let computerScore;
 let playerScore;
 
@@ -16,7 +18,7 @@ Asks user for their choice.  If it is anything other than rock, paper or scissor
 tolowercase changes the input to lowercase for validation but it will still output whatever the user wrote, i.e. Rock rock or ROCK.
 */
 
-function getPlayerInput() {
+function getPlayerInput(playerSelection) {
     playerSelection = prompt("rock, paper or scissors?"); 
         if ((playerSelection.toLowerCase()=='rock')
           ||(playerSelection.toLowerCase()=='paper')
@@ -29,12 +31,12 @@ function getPlayerInput() {
         return playerSelection; // return the value entered to () 
 }
 
-    function playRound(computerSelection, playerSelection) {
-        computerSelection = getComputerInput().toLowerCase();   // call computer input function
-        playerSelection = getPlayerInput.toLowerCase();         // call player input function
+    function playRound() {
+        computerSelection = getComputerInput();   // call computer input function
+        playerSelection = getPlayerInput();         // call player input function
         if (computerSelection==playerSelection) {
-            alert('Tie game!');
-            return 'Tie game\nComputer Score: ' + 
+            alert('It\'s a Draw!');
+            return '\nComputer Score: ' + 
                     computerScore + '\nYour Score: ' + playerScore;
         } else if ((computerSelection=='rock' && playerSelection=='scissors') 
                   || (computerSelection=='scissors' && playerSelection=='paper') 
@@ -65,14 +67,5 @@ function declareResult(playerScore,computerScore) {
       }
     }
 
-
-    function playGame () {
-        computerScore = 0;
-        playerScore = 0;
-        //for (let i=0; i<5; i++) {
-            getPlayerInput();
-        //}
-        console.log(declareResult());
-    }
 
     console.log(playRound())
