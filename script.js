@@ -1,71 +1,57 @@
-// Computer picks rock paper or scissors from the array
+const options = ['rock', 'paper', 'scissors'];
 
-const options = ['rock', 'paper', 'scissors']; // options in an array
+let computerScore = 0;
+let playerScore = 0;
+let displayResult = '';
 
-let computerSelection;
-let playerSelection;
-let computerScore;
-let playerScore;
-
-/* funtion to randomly generate computers choice */
-
-function getComputerInput(computerSelection) {
-    return computerSelection = options[~~(Math.random()*options.length)]
+function getComputerInput() {
+  return options[Math.floor(Math.random() * options.length)];
 }
 
-/* Funtion to obtain user input
-Asks user for their choice.  If it is anything other than rock, paper or scissors print error message and ask again.  
-tolowercase changes the input to lowercase for validation but it will still output whatever the user wrote, i.e. Rock rock or ROCK.
-*/
-
-function getPlayerInput(playerSelection) {
-    playerSelection = prompt("rock, paper or scissors?"); 
-        if ((playerSelection.toLowerCase()=='rock')
-          ||(playerSelection.toLowerCase()=='paper')
-          ||(playerSelection.toLowerCase()=='scissors')) {
-        } else {
-        alert('That\'s not a valid choice.');
-        getPlayerInput();
-        }
-
-        return playerSelection; // return the value entered to () 
+function getPlayerInput() {
+  let playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+  
+  if (options.includes(playerSelection)) {
+    return playerSelection;
+  } else {
+    alert("That's not a valid choice.");
+    return getPlayerInput();
+  }
 }
 
-    function playRound() {
-        computerSelection = getComputerInput();   // call computer input function
-        playerSelection = getPlayerInput();         // call player input function
-        if (computerSelection==playerSelection) {
-            alert('It\'s a Draw!');
-            return '\nComputer Score: ' + 
-                    computerScore + '\nYour Score: ' + playerScore;
-        } else if ((computerSelection=='rock' && playerSelection=='scissors') 
-                  || (computerSelection=='scissors' && playerSelection=='paper') 
-                  || (computerSelection=='paper' && playerSelection=='rock')) {
-            alert('You lose! ' + computerSelection + ' beats ' + playerSelection);
-            return 'Computer Score: ' + ++computerScore + 
-                    '\nYour Score: ' + playerScore;
-        } else {
-            alert('You win! ' + playerSelection + ' beats ' + computerSelection);
-            return 'Your Score: ' + ++playerScore + 
-                    '\nComputer Score: ' + computerScore;
-        }
-    }
+function playRound(playerSelection, computerSelection) {
+  if (computerSelection === playerSelection) {
+    displayResult = 'draw';
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper') ||
+    (playerSelection === 'paper' && computerSelection === 'rock')
+  ) {
+    playerScore++;
+    displayResult = 'player';
+  } else {
+    computerScore++;
+    displayResult = 'computer';
+  }
+}
 
-/*  Funtion to work out winner
-    added variables to this funtion.  console.log(declareResult(1,1)) passes the scores through to this function block, the values are worked on and then the result is returned.
-*/
-function declareResult(playerScore,computerScore) {       
-    if (playerScore===computerScore) {
-        alert(playerScore + '-' + computerScore + '\nIt\'s a Draw!');
-        return playerScore + '-' + computerScore + '\nIt\'s a Draw!';
-      } else if (playerScore>computerScore) {
-        alert(playerScore + '-' + computerScore + '\nYou win!!');
-        return playerScore + '-' + computerScore + '\nYou win!!';
-      } else {
-        alert(playerScore + '-' + computerScore + '\nYou lose. Better luck next time!');
-        return playerScore + '-' + computerScore + '\nYou lose. Better luck next time!'
-      }
-    }
+function game() {
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = getPlayerInput();
+    const computerSelection = getComputerInput();
+    playRound(playerSelection, computerSelection);
+    console.log(`Round ${i + 1}: Player chose ${playerSelection}, Computer chose ${computerSelection}, Result: ${displayResult}`);
+  }
 
+  console.log(`Final Score - Player: ${playerScore}, Computer: ${computerScore}`);
+  if (playerScore > computerScore) {
+    console.log('Player wins the game!');
+  } else if (computerScore > playerScore) {
+    console.log('Computer wins the game!');
+  } else {
+    console.log('It\'s a draw!');
+  }
+}
 
-    console.log(playRound())
+// Start the game
+game();
