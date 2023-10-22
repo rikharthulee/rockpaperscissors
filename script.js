@@ -2,6 +2,7 @@
 
 const options = ['Rock', 'Paper', 'Scissors']; // options in an array
 
+
 function getComputerChoice() {
 
     // get random number from 0 to total of items in the array.  If more items are added, they will be automatically included.
@@ -13,6 +14,13 @@ function getComputerChoice() {
     return choice;
 }
 
+const computerSelection = getComputerChoice()
 
 
-console.log(getComputerChoice());
+console.log(computerSelection);
+
+
+let userSelection = prompt("Rock, Paper or Scissors?");
+
+console.log(userSelection)
+
