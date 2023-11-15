@@ -53,9 +53,9 @@ function game() {
 
   console.log(`Final Score - ${playerName}: ${playerScore}, Computer: ${computerScore}`);
   if (playerScore > computerScore) {
-    console.log('Player wins the game!');
+    console.log(`${playerName} wins the game!`);
   } else if (computerScore > playerScore) {
-    console.log('Computer wins the game!');
+    console.log(`Computer wins the game!`);
   } else {
     console.log('It\'s a draw!');
   }
