@@ -42,14 +42,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-    const playerName = getPlayerName();             //declare playerName variable withing game function
-  for (let i = 0; i < 5; i++) {                     //begin loop for 5 rounds
-    const playerSelection = getPlayerInput();       //define player selection variable and get value from function
-    const computerSelection = getComputerInput();   //define computer selection variable and get value from function
-    playRound(playerSelection, computerSelection);  //playRound function within game function
-    console.log(`Round ${i + 1}: ${playerName} chose ${playerSelection}, Computer chose ${computerSelection}, Result: ${displayResult}`);  //need to learn exactly what Steve has done here
-  }
 
   console.log(`Final Score - ${playerName}: ${playerScore}, Computer: ${computerScore}`);
   if (playerScore > computerScore) {
